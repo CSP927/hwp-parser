@@ -56,7 +56,7 @@ let doc = null;
 
 try {
 
-```
+
 doc = new rhwp.HwpDocument(
   new Uint8Array(fileBuffer)
 );
@@ -97,17 +97,17 @@ for (let s = 0; s < sectionCount; s++) {
 return text
   .replace(/\n{3,}/g, '\n\n')
   .trim();
-```
+
 
 } finally {
 
-```
+
 if (doc) {
   try {
     doc.free();
   } catch(e) {}
 }
-```
+
 
 }
 }
@@ -116,7 +116,7 @@ app.post('/extract-hwp', async (req, res) => {
 
 try {
 
-```
+
 const { fileBase64 } = req.body;
 
 if (!fileBase64) {
@@ -136,18 +136,18 @@ res.json({
   success: true,
   text
 });
-```
+
 
 } catch(e) {
 
-```
+
 console.error(e);
 
 res.status(500).json({
   success: false,
   error: e.message
 });
-```
+
 
 }
 });
