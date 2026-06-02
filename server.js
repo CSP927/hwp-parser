@@ -1,4 +1,5 @@
 const express = require('express');
+const mammoth = require('mammoth');
 
 const app = express();
 
@@ -148,6 +149,32 @@ res.status(500).json({
   error: e.message
 });
 
+
+}
+});
+
+// ============================================================
+// DOCX 텍스트 추출 (파일 업로드)
+// ============================================================
+app.post('/extract-docx', async (req, res) => {
+
+try {
+
+const { fileBase64 } = req.body;
+
+if (!fileBase64) {
+  return res.status(400).json({ error: '파일 데이터 없음' });
+}
+
+const buffer = Buffer.from(fileBase64, 'base64');
+const result = await mammoth.extractRawText({ buffer });
+
+res.json({ success: true, text: result.value.trim() });
+
+} catch(e) {
+
+console.error(e);
+res.status(500).json({ success: false, error: e.message });
 
 }
 });
