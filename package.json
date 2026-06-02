@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "type": "commonjs",
-  "scripts": {
-    "start": "node server.js"
-  },
+  "scripts": { "start": "node server.js" },
   "dependencies": {
     "express": "^4.18.2",
-    "@rhwp/core": "latest"
+    "@rhwp/core": "latest",
+    "mammoth": "^1.6.0"
   }
 }
